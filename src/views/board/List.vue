@@ -13,7 +13,7 @@
       <tbody>
       <tr v-for="(row, idx) in list" :key="idx">
         <td>{{ row.idx }}</td>
-        <td>{{ row.title }}</td>
+        <td><a v-on:click="fnView(`${row.idx}`)">{{ row.title }}</a></td>
         <td>{{ row.author }}</td>
         <td>{{ row.createdAt }}</td>
       </tr>
@@ -51,27 +51,30 @@ export default {
   },
   methods: {
     fnGetList() {
-      this.no = 3
-      this.list = [
-        {
-          idx: 3,
-          title: '게시글3',
-          author: '작성자3',
-          createdAt: '2021-08-24 23:30:00'
-        },
-        {
-          idx: 2,
-          title: '게시글2',
-          author: '작성자2',
-          createdAt: '2021-08-24 23:20:00'
-        },
-        {
-          idx: 1,
-          title: '게시글1',
-          author: '작성자1',
-          createdAt: '2021-08-24 23:10:00'
-        }
-      ]
+      /************************************************
+       axios 로 backend 호출해서 데이터 가져올 예정
+       ************************************************/
+      //axios body에 requestBody 추가해서 요청하기
+      // this.requestBody = { // 데이터 전송
+      //   keyword: this.keyword,
+      //   page: this.page,
+      //   size: this.size
+      // }
+      this.$axios.get(this.$serverUrl + "/board/list")
+          .then((res) => {
+            this.list = res.data
+            this.no = res.data.length
+          })
+          .then((err) => {
+            console.log(err)
+          })
+    },
+    fnView(idx) {
+      this.requestBody.idx = idx
+      this.$router.push({
+        path: './detail',
+        query: this.requestBody
+      })
     }
   }
 }
