@@ -1,0 +1,94 @@
+
+.board-list {
+    width: 768px;
+    margin: auto;
+}
+
+.board-detail {
+    width: 768px;
+    margin: auto;
+    text-align: left;
+}
+
+.board-contents {
+    padding: 12px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.common-buttons {
+    padding: 8px;
+    text-align: right;
+}
+
+/* 페이징 */
+.pg_wrap {
+    clear: both;
+    margin: 0 0 20px;
+    padding: 20px 0 0;
+    text-align: center
+}
+
+.pg {
+    display: inline-block
+}
+
+.pg_page, .pg_current {
+    color: #9f9f9f;
+    display: block;
+    float: left;
+    padding: 0 13px;
+    line-height: 30px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin-left: -1px
+}
+
+.pg a:focus, .pg a:hover {
+    background-color: #f3f3f3
+}
+
+.pg a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pg a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pg_page {
+    background: #fff;
+    text-decoration: none
+}
+
+.pg_start {
+    /*width: 32px;*/
+    /*text-indent: -999px;*/
+    overflow: hidden
+}
+
+.pg_prev {
+    /*width: 32px;*/
+    /*text-indent: -999px;*/
+    overflow: hidden
+}
+
+.pg_next {
+    /*width: 32px;*/
+    /*text-indent: -999px;*/
+    overflow: hidden
+}
+
+.pg_end {
+    /*width: 32px;*/
+    /*text-indent: -999px;*/
+    overflow: hidden
+}
+
+.pg_current {
+    display: inline-block;
+    background: #3f51b5;
+    color: #fff;
+    font-weight: normal
+}

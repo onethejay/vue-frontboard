@@ -1,16 +1,24 @@
 <template>
   <div class="board-detail">
-    제목:
-    <span>{{ title }}</span>
-    <br>
-    작성자:
-    <span>{{ author }}</span>
-    <br>
-    내용:
-    <span>{{ contents }}</span>
-    <br>
-    작성일시:
-    <span>{{ createdAt }}</span>
+    <div class="common-buttons">
+      <button type="button" class="w3-button w3-round w3-blue-gray">수정</button>&nbsp;
+      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
+    </div>
+    <div class="board-contents">
+      <h3>{{ title }}</h3>
+      <div>
+        <strong class="w3-large">{{ author }}</strong>
+        <br>
+        <span>{{ createdAt }}</span>
+      </div>
+    </div>
+    <div class="board-contents">
+      <span>{{ contents }}</span>
+    </div>
+    <div class="common-buttons">
+      <button type="button" class="w3-button w3-round w3-blue-gray">수정</button>&nbsp;
+      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
+    </div>
   </div>
 </template>
 
@@ -43,14 +51,18 @@ export default {
         console.log(err)
       })
     },
+    fnList() {
+      delete this.requestBody.idx
+      this.$router.push({
+        path: './list',
+        query: this.requestBody
+      })
+    }
   }
 }
 </script>
 <style scoped>
 
-.board-list {
-  width: 400px;
-  margin: auto;
-}
+
 
 </style>

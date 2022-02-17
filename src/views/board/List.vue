@@ -1,6 +1,9 @@
 <template>
   <div class="board-list">
-    <table>
+    <div class="common-buttons">
+      <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnWrite">등록</button>
+    </div>
+    <table class="w3-table-all">
       <thead>
       <tr>
         <th>No</th>
@@ -9,7 +12,6 @@
         <th>등록일시</th>
       </tr>
       </thead>
-
       <tbody>
       <tr v-for="(row, idx) in list" :key="idx">
         <td>{{ row.idx }}</td>
@@ -19,17 +21,42 @@
       </tr>
       </tbody>
     </table>
-    <div>
-      <span>&lt;&lt;</span>
-      &nbsp;
-      <span>&lt;</span>
-      &nbsp;
-      1
-      &nbsp;
-      <span>&gt;</span>
-      &nbsp;
-      <span>&gt;&gt;</span>
+    <div class="pagination pg_wrap">
+      <span class="pg">
+      <a href="javascript:" @click="fnPage(1)" class="first pg_page pg_start">&lt;&lt;</a>
+      <a href="javascript:" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"
+         class="prev pg_page pg_prev">&lt;</a>
+      <template v-for=" (n, index) in paginavigation()">
+          <template v-if="paging.page===n">
+              <strong class="pg_current" :key="index">{{ n }}</strong>
+          </template>
+          <template v-else>
+              <a class="pg_page" href="javascript:" @click="fnPage(`${n}`)" :key="index">{{ n }}</a>
+          </template>
+      </template>
+      <a href="javascript:" v-if="paging.total_page_cnt > paging.end_page"
+         @click="fnPage(`${paging.end_page+1}`)" class="next pg_page pg_next">&gt;</a>
+      <a href="javascript:" @click="fnPage(`${paging.total_page_cnt}`)" class="last pg_page pg_end">&gt;&gt;</a>
+      </span>
     </div>
+<!--    <div class="pagination pg_wrap" v-if="paging.total_list_cnt > 0">-->
+<!--      <span class="pg">-->
+<!--      <a href="javascript:;" @click="fnPage(1)" class="first pg_page pg_start">&lt;&lt;</a>-->
+<!--      <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"-->
+<!--         class="prev pg_page pg_prev">&lt;</a>-->
+<!--      <template v-for=" (n,index) in paginavigation()">-->
+<!--          <template v-if="paging.page==n">-->
+<!--              <strong class="pg_current" :key="index">{{ n }}</strong>-->
+<!--          </template>-->
+<!--          <template v-else>-->
+<!--              <a class="pg_page" href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{ n }}</a>-->
+<!--          </template>-->
+<!--      </template>-->
+<!--      <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"-->
+<!--         @click="fnPage(`${paging.end_page+1}`)" class="next pg_page pg_next">&gt;</a>-->
+<!--      <a href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)" class="last pg_page pg_end">&gt;&gt;</a>-->
+<!--      </span>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -44,6 +71,13 @@ export default {
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
       keyword: this.$route.query.keyword,
+      paginavigation: function () { //페이징 처리 for문 커스텀
+        let pageNumber = [] //;
+        let start_page = 1 //this.paging.start_page;
+        let end_page = 1 //this.paging.end_page;
+        for (let i = start_page; i <= end_page; i++) pageNumber.push(i);
+        return pageNumber;
+      }
     }
   },
   mounted() {
@@ -65,8 +99,10 @@ export default {
             this.list = res.data
             this.no = res.data.length
           })
-          .then((err) => {
-            console.log(err)
+          .catch((err) => {
+            if (err.message.indexOf('Network Error') > -1) {
+              alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+            }
           })
     },
     fnView(idx) {
@@ -75,15 +111,22 @@ export default {
         path: './detail',
         query: this.requestBody
       })
+    },
+    fnWrite() {
+      this.$router.push({
+        path: './write'
+      })
+    },
+    fnPage(n) {
+      if(this.page !== n) {
+        this.page = n
+        this.fnGetList()
+      }
     }
   }
 }
 </script>
 <style scoped>
 
-.board-list {
-  width: 400px;
-  margin: auto;
-}
 
 </style>
