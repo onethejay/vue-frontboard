@@ -22,22 +22,22 @@
       </tbody>
     </table>
     <div class="pagination pg_wrap" v-if="paging.total_list_cnt > 0">
-                <span class="pg">
-                <a href="javascript:;" @click="fnPage(1)" class="first pg_page pg_start">&lt;&lt;</a>
-                <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"
-                   class="prev pg_page pg_prev">&lt;</a>
-                <template v-for=" (n,index) in paginavigation()">
-                    <template v-if="paging.page==n">
-                        <strong class="pg_current" :key="index">{{ n }}</strong>
-                    </template>
-                    <template v-else>
-                        <a class="pg_page" href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{ n }}</a>
-                    </template>
-                </template>
-                <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"
-                   @click="fnPage(`${paging.end_page+1}`)" class="next pg_page pg_next">&gt;</a>
-                <a href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)" class="last pg_page pg_end">&gt;&gt;</a>
-                </span>
+      <span class="pg">
+      <a href="javascript:;" @click="fnPage(1)" class="first pg_page pg_start">&lt;&lt;</a>
+      <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"
+         class="prev pg_page pg_prev">&lt;</a>
+      <template v-for=" (n,index) in paginavigation()">
+          <template v-if="paging.page==n">
+              <strong class="pg_current" :key="index">{{ n }}</strong>
+          </template>
+          <template v-else>
+              <a class="pg_page" href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{ n }}</a>
+          </template>
+      </template>
+      <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"
+         @click="fnPage(`${paging.end_page+1}`)" class="next pg_page pg_next">&gt;</a>
+      <a href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)" class="last pg_page pg_end">&gt;&gt;</a>
+      </span>
     </div>
   </div>
 </template>
