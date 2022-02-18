@@ -96,7 +96,8 @@ export default {
       // }
       this.$axios.get(this.$serverUrl + "/board/list")
           .then((res) => {
-            this.list = res.data
+            console.log(res)
+            this.list = res.data.data
             this.no = res.data.length
           })
           .catch((err) => {
