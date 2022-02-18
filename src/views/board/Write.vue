@@ -51,7 +51,7 @@ export default {
       }
     },
     fnList() {
-      delete this.idx
+      delete this.requestBody.idx
       this.$router.push({
         path: './list',
         query: this.requestBody
