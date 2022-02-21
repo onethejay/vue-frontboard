@@ -101,9 +101,4 @@ export default {
 </script>
 <style scoped>
 
-.board-list {
-  width: 400px;
-  margin: auto;
-}
-
 </style>
