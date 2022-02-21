@@ -10,7 +10,7 @@
       <div>
         <strong class="w3-large">{{ author }}</strong>
         <br>
-        <span>{{ createdAt }}</span>
+        <span>{{ created_at }}</span>
       </div>
     </div>
     <div class="board-contents">
@@ -34,7 +34,7 @@ export default {
       title: '',
       author: '',
       contents: '',
-      createdAt: ''
+      created_at: ''
     }
   },
   mounted() {
@@ -48,7 +48,7 @@ export default {
         this.title = res.data.title
         this.author = res.data.author
         this.contents = res.data.contents
-        this.createdAt = res.data.createdAt
+        this.created_at = res.data.created_at
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
