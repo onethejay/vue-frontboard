@@ -29,7 +29,7 @@ export default {
       title: '',
       author: '',
       contents: '',
-      createdAt: ''
+      created_at: ''
     }
   },
   mounted() {
@@ -44,7 +44,7 @@ export default {
           this.title = res.data.title
           this.author = res.data.author
           this.contents = res.data.contents
-          this.createdAt = res.data.createdAt
+          this.created_at = res.data.created_at
         }).catch((err) => {
           console.log(err)
         })
@@ -75,7 +75,8 @@ export default {
 
       if (this.idx === undefined) {
         //INSERT
-        this.$axios.post(apiUrl, this.form).then((res) => {
+        this.$axios.post(apiUrl, this.form)
+        .then((res) => {
           alert('글이 저장되었습니다.')
           this.fnView(res.data.idx)
         }).catch((err) => {
@@ -86,10 +87,10 @@ export default {
       } else {
         //UPDATE
         this.$axios.patch(apiUrl, this.form)
-            .then((res) => {
-              alert('글이 저장되었습니다.')
-              this.fnView(res.data.idx)
-            }).catch((err) => {
+        .then((res) => {
+          alert('글이 저장되었습니다.')
+          this.fnView(res.data.idx)
+        }).catch((err) => {
           if (err.message.indexOf('Network Error') > -1) {
             alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
           }

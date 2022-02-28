@@ -73,7 +73,7 @@ export default {
 
       this.$axios.delete(this.$serverUrl + '/board/' + this.idx, {})
           .then(() => {
-            alert('삭제되었습니다.');
+            alert('삭제되었습니다.')
             this.fnList();
           }).catch((err) => {
         console.log(err);
