@@ -5,10 +5,13 @@ const getUserInfo = (userId, userPw) => {
   }
 
   return {
-    'user_id': reqData.user_id,
-    'user_token': 'user_test_token',
-    'user_role': 'ADM'
+    'data': {
+      'user_id': reqData.user_id,
+      'user_token': 'user_test_token',
+      'user_role': 'ADM'
+    }
   }
+
 }
 
 export default {

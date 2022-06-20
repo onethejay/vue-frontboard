@@ -1,13 +1,14 @@
 import {createStore} from "vuex";
 import getters from "./getters";
 import mutations from "./mutations";
+import actions from "./actions";
 
-export default createStore({
+export const store = createStore({
   state: {
     user: null,
     isLogin: false,
   },
   mutations,
   getters,
-
+  actions
 });
