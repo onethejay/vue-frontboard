@@ -3,12 +3,18 @@ import Home from '@/views/Home.vue'
 import List from "@/views/board/List"
 import Detail from "@/views/board/Detail"
 import Write from "@/views/board/Write"
+import Login from "@/views/common/Login";
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/about',
