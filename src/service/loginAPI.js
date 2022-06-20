@@ -1,24 +1,20 @@
-import axios from "axios";
-
 const getUserInfo = (userId, userPw) => {
   const reqData = {
     'user_id': userId,
     'user_pw': userPw
   }
 
-  let serverUrl = '//localhost:8081'
-
-  return axios.post(serverUrl + '/user/login', reqData, {
-    headers: {
-      'Content-type': 'application/json'
-    }
-  })
+  return {
+    'user_id': reqData.user_id,
+    'user_token': 'user_test_token',
+    'user_role': 'ADM'
+  }
 }
 
 export default {
   async doLogin(userId, userPw) {
     try {
-      const getUserInfoPromise = await getUserInfo(userId, userPw)
+      const getUserInfoPromise = getUserInfo(userId, userPw)
       const [userInfoResponse] = await Promise.all([getUserInfoPromise])
       if (userInfoResponse.data.length === 0) {
         return 'notFound'
