@@ -86,8 +86,7 @@ export default {
       }
 
       this.$axios.get(this.$serverUrl + "/board/list", {
-        params: this.requestBody,
-        headers: {}
+        params: this.requestBody
       }).then((res) => {
         if (res.data.result_code === "OK") {
           this.list = res.data.data

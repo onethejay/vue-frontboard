@@ -1,9 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import Home from '@/views/Home.vue'
 import List from "@/views/board/List"
 import Detail from "@/views/board/Detail"
 import Write from "@/views/board/Write"
 import Login from "@/views/common/Login";
+import {store} from "@/vuex/store";
+
+const requireAuth = () => (from, to, next) => {
+  const token = localStorage.getItem('user_token')
+  if (token) {
+    store.state.isLogin = true
+    return next()
+  } // isAuth === true면 페이지 이동
+  next('/login') // isAuth === false면 다시 로그인 화면으로 이동
+}
 
 const routes = [
   {
@@ -27,17 +37,20 @@ const routes = [
   {
     path: '/board/list',
     name: 'List',
-    component: List
+    component: List,
+    beforeEnter: requireAuth()
   },
   {
     path: '/board/detail',
     name: 'Detail',
-    component: Detail
+    component: Detail,
+    beforeEnter: requireAuth()
   },
   {
     path: '/board/write',
     name: 'Write',
-    component: Write
+    component: Write,
+    beforeEnter: requireAuth()
   }
 ]
 
