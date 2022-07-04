@@ -2,20 +2,20 @@
   <Header/> <!-- 헤더 컴포넌트 -->
   <router-view/>  <!-- 페이지 이동이 표시될 곳 -->
   <Footer/> <!-- 푸터 컴포넌트 -->
-  <Spinner :loading="this.$store.state.loadingStatus"></Spinner>
+  <LoadingBar :loading="this.$store.state.loadingStatus"></LoadingBar>
 </template>
 
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Spinner from '@/views/common/Spinner'
+import LoadingBar from '@/views/common/LoadingBar'
 
 export default {
   name: 'App',
   components: {
     Footer,
     Header,
-    Spinner
+    LoadingBar
   }
 }
 </script>
