@@ -2,7 +2,5 @@ export default {
     getUserId: state => state.userId,
     getErrorState: state => state.errorState,
     getIsAuth: state => state.isAuth,
-    loggedIn(state) {
-        return !!state.user
-    }
+    getLoadingStatus: state => state.loadingStatus,
 }
